@@ -1,4 +1,4 @@
-//Translation of rectangle using starting and ending points
+//Translation of triangle using  starting and ending points
 //translation
 #include<bits/stdc++.h>
 #include<graphics.h>
@@ -35,13 +35,15 @@ void plotgraph(int screenWidth,int screenHeight)
 int main(){
 	
 	
-	float x,y,x0,y0,x1,y1,tx,ty;
+	float x,y,x0,y0,x1,y1,x2,y2,tx,ty;
 	int i;
 
 	cout<<"Enter the value of first point (x0,y0): ";
 	cin>>x0>>y0;
 	cout<<"Enter the value of second point (x1,y1): ";
 	cin>>x1>>y1;
+	cout<<"Enter the value of third point (x2,y2): ";
+	cin>>x2>>y2;
 	cout<<"Enter the value of translation factor (tx,ty): ";
 	cin>>tx>>ty;
 
@@ -58,7 +60,9 @@ int main(){
 
 	//line before translation
 	setcolor(BLUE);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
+	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
 	
     outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before translation");
 	//calculating the translated coordinates
@@ -66,9 +70,13 @@ int main(){
 	y0=y0+ty;
 	x1=x1+tx;
 	y1=y1+ty;
+	x2=x2+tx;
+	y2=y2+ty;
 
 	setcolor(GREEN);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
+	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
 	
     outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After translation");
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");

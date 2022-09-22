@@ -1,4 +1,4 @@
-//Rotation triangle draw
+//Rotation Line from pivot point draw
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
@@ -31,17 +31,18 @@ void plotgraph(int screenWidth,int screenHeight)
 }
 int main(){
 	
-	float x,y,x0,y0,x1,y1,x2,y2,xa,xb,xc,ya,yb,yc,angle,radian;
+	float x,y,x0,y0,x1,y1,xr,yr,xa,xb,ya,yb,angle,radian;
 	
 	
 	
+
 	
-	cout<<"Enter the value of first point (x0,y0): ";
+	cout<<"Enter the starting point (x0,y0): ";
 	cin>>x0>>y0;
-	cout<<"Enter the value of second point (x1,y1): ";
+	cout<<"Enter the ending point (x1,y1): ";
 	cin>>x1>>y1;
-	cout<<"Enter the value of third point (x2,y2): ";
-	cin>>x2>>y2;;
+	cout<<"Enter the pivot point (xr,yr): ";
+	cin>>xr>>yr;
 	cout<<"Enter the rotation angle a: ";
 	cin>>angle;
 	
@@ -58,29 +59,33 @@ int main(){
 	//graph plotting function call
 	plotgraph(screenWidth,screenHeight);
 	
-	
 	//before rotation
 	setcolor(GREEN);
 	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
-	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
-	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
 	outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before rotation");
     
     //after rotation
-    xa=x0*cos(angle*radian)-y0*sin(angle*radian);
-    ya=x0*sin(angle*radian)+y0*cos(angle*radian);
-    xb=x1*cos(angle*radian)-y1*sin(angle*radian);
-    yb=x1*sin(angle*radian)+y1*cos(angle*radian);
-    xc=x2*cos(angle*radian)-y2*sin(angle*radian);
-    yc=x2*sin(angle*radian)+y2*cos(angle*radian);
+    xa=xr+(x0-xr)*cos(angle*radian)-(y0-yr)*sin(angle*radian);
+    ya=yr+(x0-xr)*sin(angle*radian)+(y0-yr)*cos(angle*radian);
+    xb=xr+(x1-xr)*cos(angle*radian)-(y1-yr)*sin(angle*radian);
+    yb=yr+(x1-xr)*sin(angle*radian)+(y1-yr)*cos(angle*radian);
     
     setcolor(GREEN);
-	line((screenWidth/2)+xa,(screenHeight/2)-ya,(screenWidth/2)+xb,(screenHeight/2)-yb);
-	line((screenWidth/2)+xb,(screenHeight/2)-yb,(screenWidth/2)+xc,(screenHeight/2)-yc);
-	line((screenWidth/2)+xc,(screenHeight/2)-yc,(screenWidth/2)+xa,(screenHeight/2)-ya);   
+	line((screenWidth/2)+xa,(screenHeight/2)-ya,(screenWidth/2)+xb,(screenHeight/2)-yb);    
     outtextxy((screenWidth/2)+xb+10,(screenHeight/2)-yb-10, "After rotation");
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
-
+    
+    //drawing the pivot point as circle for visualization
+    setcolor(YELLOW);
+    circle((screenWidth/2)+xr,(screenHeight/2)-yr,3);
+    
+    //drawing the pivot point as filled circle for visualization
+    setfillstyle(SOLID_FILL,YELLOW);
+    setcolor(YELLOW);
+    circle((screenWidth/2)+xr,(screenHeight/2)-yr,3);
+    outtextxy((screenWidth/2)+xr+5,(screenHeight/2)-yr+5, "pivot");
+    floodfill((screenWidth/2)+xr,(screenHeight/2)-yr,YELLOW);
+    
 	getch();
 	closegraph();
 	

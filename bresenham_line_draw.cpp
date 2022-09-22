@@ -1,9 +1,7 @@
-//Translation of rectangle using starting and ending points
-//translation
+//bresenham Line draw
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
-
 
 void plotgraph(int screenWidth,int screenHeight)
 {
@@ -31,23 +29,30 @@ void plotgraph(int screenWidth,int screenHeight)
 	line(0,screenHeight/2,screenWidth,screenHeight/2);
 	line(screenWidth/2,0,screenWidth/2,screenHeight);
 }
-
 int main(){
 	
+	float x,y,x0,y0,x1,y1,dx,dy,pk;
 	
-	float x,y,x0,y0,x1,y1,tx,ty;
-	int i;
-
-	cout<<"Enter the value of first point (x0,y0): ";
+	
+	
+	
+	cout<<"Enter the starting point (x0,y0): ";
 	cin>>x0>>y0;
-	cout<<"Enter the value of second point (x1,y1): ";
+	cout<<"Enter the ending point (x1,y1): ";
 	cin>>x1>>y1;
-	cout<<"Enter the value of translation factor (tx,ty): ";
-	cin>>tx>>ty;
-
+	
+	dx=abs(x1-x0);
+	dy=abs(y1-y0);
+	
+	
+	x=x0;
+	y=y0;
+	
+	pk=2*dy-dx;
+	//graphics driver
 	int gd=DETECT,gm;
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
-
+	
 	//window size measurement and initialization
 	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
 	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
@@ -55,24 +60,37 @@ int main(){
 	
 	//graph plotting function call
 	plotgraph(screenWidth,screenHeight);
-
-	//line before translation
-	setcolor(BLUE);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	
-    outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before translation");
-	//calculating the translated coordinates
-	x0=x0+tx;
-	y0=y0+ty;
-	x1=x1+tx;
-	y1=y1+ty;
+//	cout<<"x\ty"<<endl;	
+    
+    for(int i=0;i<=dx;i++)
+    {
+    //	cout<<(int)(x)<<"\t"<<(int)(y)<<endl;
+    //	cout<<(screenWidth/2)+((int) (x))<<"\t"<<(screenWidth/2)-((int)(y))<<endl;
+        putpixel((screenWidth/2)+x,(screenHeight/2)-y,GREEN);
+        
+        if(pk<0)
+        {
+        	x=x+1;
+        	y=y;
+        	pk=pk+2*dy;
+		}
+		else
+		{
+			x=x+1;
+        	y=y+1;
+        	pk=pk+2*dy-2*dx;
+		}
+        
+        outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Starting point");
+        outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "Ending point");
+        outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
 
-	setcolor(GREEN);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
-	
-    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After translation");
-    outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
-
+    	
+	}
+    
 	getch();
 	closegraph();
+	
+
 }

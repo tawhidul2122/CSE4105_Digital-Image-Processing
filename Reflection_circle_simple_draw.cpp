@@ -1,9 +1,7 @@
-//Translation of rectangle using starting and ending points
-//translation
+//reflection circle simple draw
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
-
 
 void plotgraph(int screenWidth,int screenHeight)
 {
@@ -31,23 +29,21 @@ void plotgraph(int screenWidth,int screenHeight)
 	line(0,screenHeight/2,screenWidth,screenHeight/2);
 	line(screenWidth/2,0,screenWidth/2,screenHeight);
 }
-
 int main(){
 	
+	float r,xc,yc;
 	
-	float x,y,x0,y0,x1,y1,tx,ty;
-	int i;
-
-	cout<<"Enter the value of first point (x0,y0): ";
-	cin>>x0>>y0;
-	cout<<"Enter the value of second point (x1,y1): ";
-	cin>>x1>>y1;
-	cout<<"Enter the value of translation factor (tx,ty): ";
-	cin>>tx>>ty;
-
+	
+	
+	
+	cout<<"Enter the value of radius r : ";
+	cin>>r;
+	cout<<"Enter the value of center point (xc,yc): ";
+	cin>>xc>>yc;
+	//graphics driver
 	int gd=DETECT,gm;
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
-
+	
 	//window size measurement and initialization
 	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
 	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
@@ -55,24 +51,32 @@ int main(){
 	
 	//graph plotting function call
 	plotgraph(screenWidth,screenHeight);
-
-	//line before translation
+	
+	//before reflection
 	setcolor(BLUE);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
-	
-    outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before translation");
-	//calculating the translated coordinates
-	x0=x0+tx;
-	y0=y0+ty;
-	x1=x1+tx;
-	y1=y1+ty;
-
-	setcolor(GREEN);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
-	
-    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After translation");
+	circle((screenWidth/2)+xc,(screenHeight/2)-yc,r);
+	outtextxy((screenWidth/2)+xc,(screenHeight/2)-yc+10, "Before reflection");
+    
+    //x-axis reflection
+    xc=xc;
+    yc=-yc;
+    
+    setcolor(GREEN);
+	circle((screenWidth/2)+xc,(screenHeight/2)-yc,r);    
+    outtextxy((screenWidth/2)+xc+10,(screenHeight/2)-yc-10, "x-axis reflection");
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
-
+    
+    /*
+    //y-axis reflection
+    xc=-xc;
+    yc=yc;
+    
+    setcolor(RED);
+	circle((screenWidth/2)+xc,(screenHeight/2)-yc,r);    
+    outtextxy((screenWidth/2)+xc+10,(screenHeight/2)-yc-10, "y-axis reflection");
+   */
 	getch();
 	closegraph();
+	
+
 }

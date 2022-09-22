@@ -1,4 +1,5 @@
-//Rotation Line draw
+//DDA Line draw
+//scaling with scaling factor
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
@@ -25,24 +26,43 @@ void plotgraph(int screenWidth,int screenHeight)
 		}
 	}
 	//plotting origin axes
-	setcolor(YELLOW);
+	setcolor(BLACK);
 	line(0,screenHeight/2,screenWidth,screenHeight/2);
 	line(screenWidth/2,0,screenWidth/2,screenHeight);
 }
 int main(){
 	
-	float x,y,x0,y0,x1,y1,xa,xb,ya,yb,angle,radian;
+	float x,y,x0,y0,x1,y1,dx,dy,XIncrement,YIncrement,step,sx,sy;
 	
+	
+	
+	//dda algorithm
 	
 	
 	cout<<"Enter the starting point (x0,y0): ";
 	cin>>x0>>y0;
 	cout<<"Enter the ending point (x1,y1): ";
 	cin>>x1>>y1;
-	cout<<"Enter the rotation angle a: ";
-	cin>>angle;
+	cout<<"Enter the value of scaling factor (sx,sy): ";
+	cin>>sx>>sy;
 	
-	radian=3.14/180;
+	dx=abs(x1-x0);
+	dy=abs(y1-y0);
+	
+	if(dx>dy)
+	{
+		step=dx;
+	}
+	else
+	{
+		step=dy;
+	}
+	
+	XIncrement = (x1-x0)/step;
+	YIncrement = (y1-y0)/step;
+	
+	x=x0;
+	y=y0;
 	//graphics driver
 	int gd=DETECT,gm;
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
@@ -54,24 +74,24 @@ int main(){
 	
 	//graph plotting function call
 	plotgraph(screenWidth,screenHeight);
-		
 	
-	//before rotation
-	setcolor(GREEN);
-	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
-	outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before rotation");
+//	cout<<"x\ty"<<endl;	
     
-    //after rotation
-    xa=x0*cos(angle*radian)-y0*sin(angle*radian);
-    ya=x0*sin(angle*radian)+y0*cos(angle*radian);
-    xb=x1*cos(angle*radian)-y1*sin(angle*radian);
-    yb=x1*sin(angle*radian)+y1*cos(angle*radian);
+    for(int i=0;i<=step;i++)
+    {
     
-    setcolor(GREEN);
-	line((screenWidth/2)+xa,(screenHeight/2)-ya,(screenWidth/2)+xb,(screenHeight/2)-yb);    
-    outtextxy((screenWidth/2)+xa+10,(screenHeight/2)-yb-10, "After rotation");
-    outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
+        putpixel((screenWidth/2)+((int) (x+0.5)),(screenHeight/2)-((int)(y+0.5)),GREEN);
+        outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "original line");
+        
+        setcolor(BLUE);
+        putpixel((screenWidth/2)+((int) (x*sx+0.5)),(screenHeight/2)-((int)(y*sy+0.5)),GREEN);
+        outtextxy((screenWidth/2)+x1*sx+10,(screenHeight/2)-y1*sy-10, "scaled line");
+        outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
 
+    	x=x+XIncrement;
+    	y=y+YIncrement;
+	}
+    
 	getch();
 	closegraph();
 	

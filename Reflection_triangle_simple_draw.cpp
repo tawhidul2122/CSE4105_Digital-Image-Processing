@@ -1,4 +1,4 @@
-//Rotation triangle draw
+//Reflection triangle simple draw
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
@@ -31,7 +31,7 @@ void plotgraph(int screenWidth,int screenHeight)
 }
 int main(){
 	
-	float x,y,x0,y0,x1,y1,x2,y2,xa,xb,xc,ya,yb,yc,angle,radian;
+	float x,y,x0,y0,x1,y1,x2,y2;
 	
 	
 	
@@ -42,10 +42,7 @@ int main(){
 	cin>>x1>>y1;
 	cout<<"Enter the value of third point (x2,y2): ";
 	cin>>x2>>y2;;
-	cout<<"Enter the rotation angle a: ";
-	cin>>angle;
 	
-	radian=3.14/180;
 	//graphics driver
 	int gd=DETECT,gm;
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
@@ -57,30 +54,44 @@ int main(){
 	
 	//graph plotting function call
 	plotgraph(screenWidth,screenHeight);
-	
-	
-	//before rotation
-	setcolor(GREEN);
+	//before reflection
+	setcolor(BLUE);
 	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
 	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
 	outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before rotation");
     
-    //after rotation
-    xa=x0*cos(angle*radian)-y0*sin(angle*radian);
-    ya=x0*sin(angle*radian)+y0*cos(angle*radian);
-    xb=x1*cos(angle*radian)-y1*sin(angle*radian);
-    yb=x1*sin(angle*radian)+y1*cos(angle*radian);
-    xc=x2*cos(angle*radian)-y2*sin(angle*radian);
-    yc=x2*sin(angle*radian)+y2*cos(angle*radian);
+    //reflection on x-axis
+    x0=x0;
+    y0=-y0;
+    x1=x1;
+    y1=-y1;
+    x2=x2;
+    y2=-y2;
     
     setcolor(GREEN);
-	line((screenWidth/2)+xa,(screenHeight/2)-ya,(screenWidth/2)+xb,(screenHeight/2)-yb);
-	line((screenWidth/2)+xb,(screenHeight/2)-yb,(screenWidth/2)+xc,(screenHeight/2)-yc);
-	line((screenWidth/2)+xc,(screenHeight/2)-yc,(screenWidth/2)+xa,(screenHeight/2)-ya);   
-    outtextxy((screenWidth/2)+xb+10,(screenHeight/2)-yb-10, "After rotation");
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
+	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);   
+    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "x-axis reflection");
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
-
+    
+    /*
+    //reflection on y-axis
+    x0=-x0;
+    y0=y0;
+    x1=-x1;
+    y1=y1;
+    x2=-x2;
+    y2=y2;
+    
+    setcolor(RED);
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
+	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);   
+    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "y-axis reflection");
+    */
+ 
 	getch();
 	closegraph();
 	

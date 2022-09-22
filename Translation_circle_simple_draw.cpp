@@ -1,4 +1,4 @@
-//Translation of rectangle using starting and ending points
+//Translation of circle from simple circle drawing
 //translation
 #include<bits/stdc++.h>
 #include<graphics.h>
@@ -35,16 +35,15 @@ void plotgraph(int screenWidth,int screenHeight)
 int main(){
 	
 	
-	float x,y,x0,y0,x1,y1,tx,ty;
+	float r,xc,yc,tx,ty;
 	int i;
 
-	cout<<"Enter the value of first point (x0,y0): ";
-	cin>>x0>>y0;
-	cout<<"Enter the value of second point (x1,y1): ";
-	cin>>x1>>y1;
+	cout<<"Enter the value of radius r : ";
+	cin>>r;
+	cout<<"Enter the value of center point (xc,yc): ";
+	cin>>xc>>yc;
 	cout<<"Enter the value of translation factor (tx,ty): ";
 	cin>>tx>>ty;
-
 	int gd=DETECT,gm;
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
 
@@ -58,19 +57,18 @@ int main(){
 
 	//line before translation
 	setcolor(BLUE);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	circle((screenWidth/2)+xc,(screenHeight/2)-yc,r);
 	
-    outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before translation");
+	
+    outtextxy((screenWidth/2)+xc,(screenHeight/2)-yc+10, "Before translation");
 	//calculating the translated coordinates
-	x0=x0+tx;
-	y0=y0+ty;
-	x1=x1+tx;
-	y1=y1+ty;
+	xc=xc+tx;
+	yc=yc+ty;
 
 	setcolor(GREEN);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	circle((screenWidth/2)+xc,(screenHeight/2)-yc,r);
 	
-    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After translation");
+    outtextxy((screenWidth/2)+xc+60,(screenHeight/2)-yc-10, "After translation");
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
 
 	getch();

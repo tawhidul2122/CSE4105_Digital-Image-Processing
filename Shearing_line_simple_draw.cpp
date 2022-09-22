@@ -1,5 +1,5 @@
-//Translation of rectangle using starting and ending points
-//translation
+//Shearing of line using line starting and ending points
+
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
@@ -35,16 +35,16 @@ void plotgraph(int screenWidth,int screenHeight)
 int main(){
 	
 	
-	float x,y,x0,y0,x1,y1,tx,ty;
+	float x,y,x0,y0,x1,y1,shx,shy;
 	int i;
 
-	cout<<"Enter the value of first point (x0,y0): ";
+	cout<<"Enter the value of starting point (x0,y0): ";
 	cin>>x0>>y0;
-	cout<<"Enter the value of second point (x1,y1): ";
+	cout<<"Enter the value of ending point (x1,y1): ";
 	cin>>x1>>y1;
-	cout<<"Enter the value of translation factor (tx,ty): ";
-	cin>>tx>>ty;
-
+	cout<<"Enter the value of shearing parameter (shx,shy): ";
+	cin>>shx>>shy;
+	
 	int gd=DETECT,gm;
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
 
@@ -55,24 +55,37 @@ int main(){
 	
 	//graph plotting function call
 	plotgraph(screenWidth,screenHeight);
-
-	//line before translation
+	//line before shearing
 	setcolor(BLUE);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	
-    outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before translation");
-	//calculating the translated coordinates
-	x0=x0+tx;
-	y0=y0+ty;
-	x1=x1+tx;
-	y1=y1+ty;
+    outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "Before shearing");
+    
+    //shearing on x-axis
+	//calculating the sheared coordinates
+	x0=x0+shx*y0;
+	y0=y0;
+	x1=x1+shx*y1;
+	y1=y1;
 
 	setcolor(GREEN);
-	rectangle((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	
-    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After translation");
+    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After shearing(x-axis)");
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
+    
+    /*
+    //shearing on y-axis
+	//calculating the sheared coordinates
+	x0=x0;
+	y0=y0+shy*x0;
+	x1=x1;
+	y1=y1+shy*x1;
 
+	setcolor(RED);
+	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
+    outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-y1-10, "After shearing(y-axis)");
+    */
 	getch();
 	closegraph();
 }
