@@ -30,7 +30,7 @@ int start(int *p)
     setbkcolor(WHITE);
     body();           
     ball(j,k,l);     
-    setcolor(RED);
+    //setcolor(RED);
     line(50,310, 400, 310);
     for(i=0; i<m++; i++)
     {

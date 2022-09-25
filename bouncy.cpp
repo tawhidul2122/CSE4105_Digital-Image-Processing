@@ -19,7 +19,7 @@ int main()
 
       for(float i=90;i<270;i+=10)
        {
-y=cos(((i*22/7)/180))/j;
+y=sin(((i*22/7)/180))/j;
 
 if(y>0)
 y=-y;
