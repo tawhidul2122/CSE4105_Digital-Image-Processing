@@ -7,18 +7,18 @@ using namespace std;
 void plotgraph(int screenWidth,int screenHeight)
 {
 	//plotting grids
-	for(int i=screenWidth/2;i<=screenWidth;i=i+25)
+	for(int i=screenWidth/2;i<=screenWidth;i=i+50)
 	{
-		for(int j=screenHeight/2;j<=screenHeight;j=j+25)
+		for(int j=screenHeight/2;j<=screenHeight;j=j+50) 
 		{
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
 	}
-	for(int i=screenWidth/2;i>=0;i=i-25)
+	for(int i=screenWidth/2;i>=0;i=i-50)
 	{
-		for(int j=screenHeight/2;j>=0;j=j-25)
+		for(int j=screenHeight/2;j>=0;j=j-50)
 		{
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
@@ -26,7 +26,7 @@ void plotgraph(int screenWidth,int screenHeight)
 		}
 	}
 	//plotting origin axes
-	setcolor(YELLOW);
+	setcolor(WHITE);
 	line(0,screenHeight/2,screenWidth,screenHeight/2);
 	line(screenWidth/2,0,screenWidth/2,screenHeight);
 }
@@ -86,18 +86,7 @@ int main(){
         putpixel((screenWidth/2)+(xc-y),(screenHeight/2)-(yc+x),GREEN);
         putpixel((screenWidth/2)+(xc-y),(screenHeight/2)-(yc-x),GREEN);
         
-        //rotation
-        //there's something wrong ***************************************************
-        /*
-        putpixel((screenWidth/2)+(xc+x)*cos(radian)-(yc+y)*sin(radian),(screenHeight/2)-(xc+x)*sin(radian)+(yc+y)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc+x)*cos(radian)-(yc-y)*sin(radian),(screenHeight/2)-(xc+x)*sin(radian)+(yc-y)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc-x)*cos(radian)-(yc+y)*sin(radian),(screenHeight/2)-(xc-x)*sin(radian)+(yc+y)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc-x)*cos(radian)-(yc-y)*sin(radian),(screenHeight/2)-(xc-x)*sin(radian)+(yc-y)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc+y)*cos(radian)-(yc+x)*sin(radian),(screenHeight/2)-(xc+y)*sin(radian)+(yc+x)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc+y)*cos(radian)-(yc-x)*sin(radian),(screenHeight/2)-(xc+y)*sin(radian)+(yc-x)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc-y)*cos(radian)-(yc+x)*sin(radian),(screenHeight/2)-(xc-y)*sin(radian)+(yc+x)*cos(radian),BLUE);
-        putpixel((screenWidth/2)+(xc-y)*cos(radian)-(yc-x)*sin(radian),(screenHeight/2)-(xc-y)*sin(radian)+(yc-x)*cos(radian),BLUE);
-        */
+        
         
         if(pk<0)
         {
@@ -117,8 +106,8 @@ int main(){
     outtextxy((screenWidth/2)+xc,(screenHeight/2)-yc+10, "before rotation");
    
     
-    setcolor(BLUE);
-    outtextxy((screenWidth/2)+(xc+x)*cos(radian)-(yc+y)*sin(radian)+10,(screenHeight/2)-(xc+x)*sin(radian)+(yc+y)*cos(radian)-10, "after rotation");
+    setcolor(GREEN);
+    outtextxy(((screenWidth/2)+(((xc+x)*cos(radian))-(yc+y)*sin(radian)+10)),(((screenHeight/2)-((xc+x)*sin(radian))+((yc+y)*cos(radian)-10))));
     outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");
 	getch();
 	closegraph();

@@ -8,18 +8,18 @@ using namespace std;
 void plotgraph(int screenWidth,int screenHeight)
 {
 	//plotting grids
-	for(int i=screenWidth/2;i<=screenWidth;i=i+25)
+	for(int i=screenWidth/2;i<=screenWidth;i=i+50)
 	{
-		for(int j=screenHeight/2;j<=screenHeight;j=j+25)
+		for(int j=screenHeight/2;j<=screenHeight;j=j+50)
 		{
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
 	}
-	for(int i=screenWidth/2;i>=0;i=i-25)
+	for(int i=screenWidth/2;i>=0;i=i-50)
 	{
-		for(int j=screenHeight/2;j>=0;j=j-25)
+		for(int j=screenHeight/2;j>=0;j=j-50)
 		{
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
@@ -58,7 +58,7 @@ int main(){
 	plotgraph(screenWidth,screenHeight);
 
 	//triangle before shearing
-	setcolor(BLUE);
+	setcolor(GREEN);
 	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
 	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
@@ -74,7 +74,7 @@ int main(){
 	x2=x2+shx*y2;
 	y2=y2;
 
-	setcolor(GREEN);
+	setcolor(RED);
 	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
 	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);

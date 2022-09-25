@@ -7,20 +7,20 @@ using namespace std;
 void plotgraph(int screenWidth,int screenHeight)
 {
 	//plotting grids
-	for(int i=screenWidth/2;i<=screenWidth;i=i+25)
+	for(int i=screenWidth/2;i<=screenWidth;i=i+50)
 	{
-		for(int j=screenHeight/2;j<=screenHeight;j=j+25)
+		for(int j=screenHeight/2;j<=screenHeight;j=j+50)
 		{
-			setcolor(MAGENTA);
+			setcolor(WHITE);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
 	}
-	for(int i=screenWidth/2;i>=0;i=i-25)
+	for(int i=screenWidth/2;i>=0;i=i-50)
 	{
-		for(int j=screenHeight/2;j>=0;j=j-25)
+		for(int j=screenHeight/2;j>=0;j=j-50)
 		{
-			setcolor(MAGENTA);
+			setcolor(WHITE);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
@@ -86,7 +86,7 @@ int main(){
         outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "original line");
         
         setcolor(BLUE);
-        putpixel((screenWidth/2)+(((int) (x+0.5))*cos(angle*radian)-((int)(y+0.5))*sin(angle*radian)),(screenHeight/2)-(((int) (x+0.5))*sin(angle*radian)+((int)(y+0.5))*cos(angle*radian)),BLUE); //rotation with rotatin angle
+        putpixel((screenWidth/2)+(((int) (x+0.5))*cos(angle*radian)-((int)(y+0.5))*sin(angle*radian)),(screenHeight/2)-(((int) (x+0.5))*sin(angle*radian)+((int)(y+0.5))*cos(angle*radian)),GREEN); //rotation with rotatin angle
         outtextxy((screenWidth/2)+(((int) (x1+0.5))*cos(angle*radian)-((int)(y1+0.5))*sin(angle*radian)),(screenHeight/2)-(((int) (x1+0.5))*sin(angle*radian)+((int)(y1+0.5))*cos(angle*radian)), "rotated line");
         
         outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");

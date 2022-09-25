@@ -5,7 +5,7 @@ static int LEFT=1,RIGHT=2,BOTTOM=4,TOP=8,xl,xh,yl,yh;
 void plotgraph(int screenWidth,int screenHeight)
 {
 	setcolor(MAGENTA);
-	
+
 	for(int i=screenWidth/2;i<=screenWidth;i=i+25)
 	{
 		for(int j=screenHeight/2;j<=screenHeight;j=j+25)
@@ -33,38 +33,40 @@ int getcode(int x,int y)
 	if(x>xh)code=code | RIGHT;
 	if(y<yl)code=code | BOTTOM;
 	if(y>yh)code=code | TOP;
-	
-	return code;	
+
+	return code;
 }
 int main()
 {
-	
+    int screenWidth=GetSystemMetrics(SM_CXSCREEN);
+	int screenHeight=GetSystemMetrics(SM_CYSCREEN);
+    initwindow(screenWidth,screenHeight,"Line Clipping",-3,-3);
+
 	float x1,y1,x2,y2;
 	setcolor(YELLOW);
 	cout<<"Enter bottom-left and upper-right coordinates of the window: ";
 	cin>>xl>>yl>>xh>>yh;
 	cout<<"Enter coordinates of the line: ";
-	cin>>x1>>y1>>x2>>y2;	
+	cin>>x1>>y1>>x2>>y2;
 	int gd=DETECT,gm;
-	
+
 	//window initialization and size measurements
-	int screenWidth=GetSystemMetrics(SM_CXSCREEN);
-	int screenHeight=GetSystemMetrics(SM_CYSCREEN);
-	initwindow(screenWidth,screenHeight,"Line Clipping",-3,-3);
-	
+
+
+
 	plotgraph(screenWidth,screenHeight);
-	
-		
+
+
 	int code1=getcode(x1,y1);
 	int code2=getcode(x2,y2);
-	
+
 	setlinestyle(0,0,2);
 	rectangle((screenWidth/2)+xl,(screenHeight/2)-yl,(screenWidth/2)+xh,(screenHeight/2)-yh);
-	
+
 	setcolor(GREEN);
 	setlinestyle(0,0,2);
 	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
-	
+
 	int accept=0;
 	while(1){
 		float m=(float) (y2-y1)/(x2-x1);
@@ -82,7 +84,7 @@ int main()
 		{
 			int x,y;
 			int temp;
-			
+
 			if(code1==0)
 			{
 				temp=code2;
@@ -91,7 +93,7 @@ int main()
 			{
 				temp=code1;
 			}
-			
+
 			if(temp & TOP)
 			{
 				x=	x1+(yh-y1)/m;
@@ -112,25 +114,25 @@ int main()
 				x=	xh;
 				y=  y1+(xh-x1)*m;
 			}
-			
+
 			if(code1==temp)
 			{
 				x1=x;
 				y1=y;
 				code1=getcode(x1,y1);
-				
+
 			}
 			else
 			{
 				x2=x;
 				y2=y;
-				code2=getcode(x2,y2);	
+				code2=getcode(x2,y2);
 			}
-				
+
 		}
     	}
 	setcolor(WHITE);
-	
+
 	if(accept==1)
 	{
 		setlinestyle(0,0,2);  //line thickness increase
@@ -140,7 +142,7 @@ int main()
 	}
 	getch();
 	closegraph();
-	
-	
+
+
 	return 0;
 }

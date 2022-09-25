@@ -1,31 +1,32 @@
-//Rotation Line draw
 #include<bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
 
 void plotgraph(int screenWidth,int screenHeight)
 {
+	setbkcolor(WHITE);
 	//plotting grids
-	for(int i=screenWidth/2;i<=screenWidth;i=i+25)
+	for(int i=screenWidth/2;i<=screenWidth;i=i+50)
 	{
-		for(int j=screenHeight/2;j<=screenHeight;j=j+25)
+		for(int j=screenHeight/2;j<=screenHeight;j=j+50)
 		{
-			setcolor(WHITE);
+			setcolor(LIGHTGRAY);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
 	}
-	for(int i=screenWidth/2;i>=0;i=i-25)
+	for(int i=screenWidth/2;i>=0;i=i-50)
 	{
-		for(int j=screenHeight/2;j>=0;j=j-25)
+		for(int j=screenHeight/2;j>=0;j=j-50)
 		{
-			setcolor(WHITE);
+			setcolor(LIGHTGRAY);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
 	}
+	setbkcolor(WHITE);
 	//plotting origin axes
-	setcolor(YELLOW);
+	setcolor(BLUE);
 	line(0,screenHeight/2,screenWidth,screenHeight/2);
 	line(screenWidth/2,0,screenWidth/2,screenHeight);
 }
@@ -45,11 +46,13 @@ int main(){
 	radian=3.14/180;
 	//graphics driver
 	int gd=DETECT,gm;
+	setbkcolor(WHITE);
 	initgraph(&gd,&gm,"c:\\tc\\bgi");
 	
 	//window size measurement and initialization
 	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
 	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
+	setbkcolor(WHITE);
 	initwindow(screenWidth,screenHeight,"",-3,-3);
 	
 	//graph plotting function call

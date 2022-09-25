@@ -7,9 +7,9 @@ using namespace std;
 
 void plotgraph(int screenWidth, int screenHeight){
 	
-	for(int i = screenWidth / 2, j = screenWidth / 2;i < screenWidth || j >= 0; i = i + 25, j = j - 25){
+	for(int i = screenWidth / 2, j = screenWidth / 2;i < screenWidth || j >= 0; i = i + 50, j = j - 50){
 		if(i == screenWidth / 2) {
-			setcolor(RED);
+			setcolor(WHITE);
 			line(i,0,i,screenHeight);
 		}
 		else {
@@ -19,9 +19,9 @@ void plotgraph(int screenWidth, int screenHeight){
 		}
 	}
 	
-	for(int i = screenHeight / 2, j = screenHeight / 2;i < screenHeight || j >= 0; i = i + 25, j = j - 25){
+	for(int i = screenHeight / 2, j = screenHeight / 2;i < screenHeight || j >= 0; i = i + 50, j = j - 50){
 		if(i == screenHeight / 2) {
-			setcolor(RED);
+			setcolor(WHITE);
 			line(0,i,screenWidth,i);
 		}
 		else {

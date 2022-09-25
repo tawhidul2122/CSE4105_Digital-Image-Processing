@@ -33,18 +33,7 @@ void plotgraph(int screenWidth,int screenHeight)
 
 int main(){
 
-	int gd=DETECT,gm;
-	initgraph(&gd,&gm,"c:\\tc\\bgi");
-	setbkcolor(WHITE);
-
-
-	//window size measurement and initialization
-	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
-	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
-	initwindow(screenWidth,screenHeight,"",-3,-3);
 	
-	//graph plotting function call
-	plotgraph(screenWidth,screenHeight);
 
 	float rx,ry,x,y,x0,y0,p1,p2,xc,yc,dx,dy;
 	int i;
@@ -60,6 +49,19 @@ int main(){
 	//for center=origin (x,y)=(0,ry)
 	x=0;
 	y=ry;
+
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:\\tc\\bgi");
+	setbkcolor(WHITE);
+
+
+	//window size measurement and initialization
+	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
+	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
+	initwindow(screenWidth,screenHeight,"",-3,-3);
+	
+	//graph plotting function call
+	plotgraph(screenWidth,screenHeight);
 
 
 	//REGION 1

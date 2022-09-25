@@ -83,7 +83,7 @@ int main(){
         outtextxy((screenWidth/2)+x0,(screenHeight/2)-y0+10, "before reflection");
         
         //x-axis reflection
-        setcolor(BLUE);
+        setcolor(GREEN);
         putpixel((screenWidth/2)+((int) (x+0.5)),(screenHeight/2)-((int)(-y+0.5)),BLUE);
         outtextxy((screenWidth/2)+x1+10,(screenHeight/2)-(-y1)-10, "after reflection");
         outtextxy((screenWidth/2)+5,(screenHeight/2)+5, "(0,0)");

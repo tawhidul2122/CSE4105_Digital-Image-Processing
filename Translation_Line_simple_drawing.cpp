@@ -15,7 +15,7 @@ void plotgraph(int screenWidth,int screenHeight)
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
-		}
+		+}
 	}
 	for(int i=screenWidth/2;i>=0;i=i-25)
 	{
