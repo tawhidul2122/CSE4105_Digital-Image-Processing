@@ -8,18 +8,18 @@ using namespace std;
 void plotgraph(int screenWidth,int screenHeight)
 {
 	//plotting grids
-	for(int i=screenWidth/2;i<=screenWidth;i=i+50)
+	for(int i=screenWidth/2;i<=screenWidth;i=i+25)
 	{
-		for(int j=screenHeight/2;j<=screenHeight;j=j+50)
+		for(int j=screenHeight/2;j<=screenHeight;j=j+25)
 		{
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
 			line(i,0,i,screenHeight);
 		}
 	}
-	for(int i=screenWidth/2;i>=0;i=i-50)
+	for(int i=screenWidth/2;i>=0;i=i-25)
 	{
-		for(int j=screenHeight/2;j>=0;j=j-50)
+		for(int j=screenHeight/2;j>=0;j=j-25)
 		{
 			setcolor(WHITE);
 			line(0,j,screenWidth,j);
@@ -34,7 +34,16 @@ void plotgraph(int screenWidth,int screenHeight)
 
 int main(){
 	
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:\\tc\\bgi");
+
+	//window size measurement and initialization
+	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
+	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
+	initwindow(screenWidth,screenHeight,"",-3,-3);
 	
+	//graph plotting function call
+	plotgraph(screenWidth,screenHeight);
 	float x,y,x0,y0,x1,y1,x2,y2,shx,shy;
 	int i;
 
@@ -46,19 +55,9 @@ int main(){
 	cin>>x2>>y2;
 	cout<<"Enter the value of shearing parameter (shx,shy): ";
 	cin>>shx>>shy;
-	int gd=DETECT,gm;
-	initgraph(&gd,&gm,"c:\\tc\\bgi");
-
-	//window size measurement and initialization
-	DWORD screenWidth=GetSystemMetrics(SM_CXSCREEN);
-	DWORD screenHeight=GetSystemMetrics(SM_CYSCREEN);
-	initwindow(screenWidth,screenHeight,"",-3,-3);
-	
-	//graph plotting function call
-	plotgraph(screenWidth,screenHeight);
 
 	//triangle before shearing
-	setcolor(GREEN);
+	setcolor(RED);
 	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
 	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
@@ -74,7 +73,7 @@ int main(){
 	x2=x2+shx*y2;
 	y2=y2;
 
-	setcolor(RED);
+	setcolor(GREEN);
 	line((screenWidth/2)+x0,(screenHeight/2)-y0,(screenWidth/2)+x1,(screenHeight/2)-y1);
 	line((screenWidth/2)+x1,(screenHeight/2)-y1,(screenWidth/2)+x2,(screenHeight/2)-y2);
 	line((screenWidth/2)+x2,(screenHeight/2)-y2,(screenWidth/2)+x0,(screenHeight/2)-y0);
